@@ -1,0 +1,39 @@
+#Kullandığım Kütüphaneler
+import tkinter as tk 
+from tkinter import messagebox
+
+#Pencereyi Açmak İçin
+form = tk.Tk()
+form.title("Vize-Final Hesaplama") #Başlık
+
+#Kullanıcıdan Alınan Değerleri Kullanmak İçin;
+vize3 = tk.StringVar() 
+final2 = tk.StringVar()
+
+#Kullanıcıdan Değer Almak İçin ve Yazılar;
+vize1 = tk.Label(form,text="Vize").pack()
+vize1_entry = tk.Entry(form,textvariable=vize3).pack()
+final1 = tk.Label(form,text="Final").pack()
+final1_entry = tk.Entry(form,textvariable=final2).pack()
+
+#Kullanıcıdan Alınan Değerler İle İşlem Yapmak İçin
+def işlem():
+    vize = int(vize3.get())
+    final = int(final2.get())
+    if (final < 50):
+            messagebox.showinfo("ORTALAMANIZ","KALDINIZ, FİNALDEN EN AZ 50 ALMAK ZORUNDASINIZ.") #Messagebox kütüphanesi ile eğer final notu 50'den düşük ise çıkacak mesaj
+    elif (final >= 50): #Eğer Final Notu 50'ye Eşit ya da 50'den yüksek bir not ise İzlenceke yol
+        ortalama = (vize * 0.4) + (final * 0.6) #Yapılcak İşlem.
+        if (ortalama > 50):
+             messagebox.showinfo("GEÇTİNİZ", ortalama)
+        elif(ortalama < 50):
+             messagebox.showinfo("KALDINIZ", ortalama)
+
+    
+
+    
+
+hesapla = tk.Button(form,text="Hesapla",command=işlem).pack() #Button
+
+#Pencerenin Açık Kalması İçin
+form.mainloop()
